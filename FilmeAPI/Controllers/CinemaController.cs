@@ -32,7 +32,9 @@ public class CinemaController : Controller {
    
     [HttpGet]
     public IEnumerable<ReadCinemaDto> getCinemas([FromQuery] int skip = 0, [FromQuery] int take = 50) {
-        return _mapper.Map<List<ReadCinemaDto>>(_context.cinemas.Skip(skip).Take(take));
+        
+        var cinemaList = _mapper.Map<List<ReadCinemaDto>>(_context.cinemas.Skip(skip).Take(take));
+        return cinemaList;
     }
 
 
