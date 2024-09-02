@@ -44,7 +44,7 @@ public class FilmeController:ControllerBase {
     /// <response code="404">Filme não encontrado</response>
     [HttpGet]
     public IEnumerable<ReadFilmeDto> getFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50) {
-        return _mapper.Map<List<ReadFilmeDto>>(_context.filmes.Skip(skip).Take(take));
+        return _mapper.Map<List<ReadFilmeDto>>(_context.filmes.Skip(skip).Take(take)).ToList();
     }
 
 

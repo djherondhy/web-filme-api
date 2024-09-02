@@ -7,4 +7,6 @@ public class ReadCinemaDto {
     public string Nome { get; set; }
     
     public ReadEnderecoDto ReadEnderecoDto { get; set; }
+
+    public virtual ICollection<ReadSessaoDto> Sessoes { get; set; }
 }

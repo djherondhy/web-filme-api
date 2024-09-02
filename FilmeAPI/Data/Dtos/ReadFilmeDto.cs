@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FilmeAPI.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace FilmeAPI.Data.Dtos; 
 public class ReadFilmeDto {
@@ -9,4 +10,5 @@ public class ReadFilmeDto {
 
     public DateTime QueryTime { get; set; } = DateTime.Now;
 
+    public virtual ICollection<ReadSessaoDto> Sessoes { get; set; }
 }

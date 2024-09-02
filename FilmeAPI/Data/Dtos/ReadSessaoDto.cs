@@ -5,4 +5,6 @@ public class ReadSessaoDto {
 
     [Required]
     public int Id { get; set; }
+
+    public virtual ICollection<ReadSessaoDto> Sessoes { get; set; }
 }
