@@ -9,4 +9,6 @@ public class Cinema {
 
     [Required(ErrorMessage = "O campo é obrigatório")]
     public string Nome { get; set; }
+    public int EnderecoId { get; set; }
+    public virtual Endereco Endereco { get; set; }
 }
