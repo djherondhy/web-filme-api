@@ -43,8 +43,19 @@ public class FilmeController:ControllerBase {
     /// <response code="200">Filme retornado com sucesso</response>
     /// <response code="404">Filme não encontrado</response>
     [HttpGet]
-    public IEnumerable<ReadFilmeDto> getFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50) {
-        return _mapper.Map<List<ReadFilmeDto>>(_context.filmes.Skip(skip).Take(take)).ToList();
+    public IEnumerable<ReadFilmeDto> getFilmes([FromQuery] int skip = 0, 
+        [FromQuery] int take = 50,
+        [FromQuery] string? nomeCinema  = null
+        ) {
+
+        if (nomeCinema == null) {
+            return _mapper.Map<List<ReadFilmeDto>>(_context.filmes.Skip(skip).Take(take)).ToList();
+        }
+
+        return _mapper.Map<List<ReadFilmeDto>>(_context.filmes.Skip(skip).Take(take))
+            .Where(filme => filme.Sessoes.Any(sessao => sessao.Cinema.Nome == nomeCinema))
+            .ToList();
+
     }
 
 
