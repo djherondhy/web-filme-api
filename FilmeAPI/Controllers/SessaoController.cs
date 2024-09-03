@@ -23,7 +23,7 @@ public class SessaoController : Controller {
         Sessao sessao = _mapper.Map<Sessao>(sessaoDto);
         _context.sessoes.Add(sessao);
         _context.SaveChanges();
-        return CreatedAtAction(nameof(getSessaoById), new { id = sessao.Id }, sessao);
+        return CreatedAtAction(nameof(getSessaoById), new { filmeId = sessao.FilmeId, cinemaId = sessao.CinemaId  }, sessao);
     }
 
     [HttpGet]
@@ -32,9 +32,9 @@ public class SessaoController : Controller {
         return sessaoList;
     }
 
-    [HttpGet("{id}")]
-    public IActionResult getSessaoById(int id) {
-        var sessao = _context.sessoes.FirstOrDefault(sessao => sessao.Id == id);
+    [HttpGet("{filmeId}/{cinemaId}")]
+    public IActionResult getSessaoById(int filmeId, int cinemaId) {
+        var sessao = _context.sessoes.FirstOrDefault(sessao => sessao.FilmeId == filmeId && sessao.CinemaId == cinemaId);
         if (sessao == null) return NotFound();
         var sessaoDto = _mapper.Map<ReadSessaoDto>(sessao);
         return Ok(sessaoDto);

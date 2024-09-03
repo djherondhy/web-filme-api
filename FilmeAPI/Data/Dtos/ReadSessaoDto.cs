@@ -3,8 +3,8 @@
 namespace FilmeAPI.Data.Dtos; 
 public class ReadSessaoDto {
 
-    [Required]
-    public int Id { get; set; }
+  
+    public int FilmeId { get; set; }
+    public int CinemaId { get; set; }
 
-    public virtual ICollection<ReadSessaoDto> Sessoes { get; set; }
 }

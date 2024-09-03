@@ -7,6 +7,15 @@ public class FilmeContext: DbContext {
     
     }
 
+    protected override void OnModelCreating(ModelBuilder builder) {
+
+        builder.Entity<Sessao>().HasKey(sessao => new { sessao.FilmeId, sessao.CinemaId });
+        
+        builder.Entity<Sessao>().HasOne(sessao => sessao.Cinema).WithMany(cinema => cinema.Sessoes).HasForeignKey(sessao=> sessao.CinemaId);
+        builder.Entity<Sessao>().HasOne(sessao => sessao.Cinema).WithMany(filme => filme.Sessoes).HasForeignKey(sessao => sessao.FilmeId);
+
+    }
+
     public DbSet<Filme> filmes { get; set; }  
     public DbSet<Cinema> cinemas { get; set; }
     public DbSet<Endereco> enderecos { get; set; }
